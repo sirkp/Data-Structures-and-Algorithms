@@ -1,0 +1,24 @@
+An array is collection of items stored at contiguous memory locations.
+
+Declaration:C++
+
+int arr[3];
+int arr[3]={1,2,3};
+int arr[3]={1,2,3,4};//compile error
+int arr[]={1,2,3};
+int arr[3]={};//same as int arr[3]={0}//0 0 0
+int arr[3]={1};//1 0 0
+int* arr;
+int *arr;
+int * arr;
+int*arr;
+
+Accessing Array Elements:
+
+arr[i];
+
+complexity- O(1)
+
+No Index Out of bound Checking:
+arr[4];
+arr[5];// out of bound but compiler will fail to check error
