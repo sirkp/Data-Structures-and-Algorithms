@@ -14,9 +14,9 @@ void my_swap(int *a,int *b)
 
 int partition(int arr[],int low,int high)
 {
-	// srand(time(NULL));
-	// int random = low+(rand()%(high-low));
-	// my_swap(&arr[random],&arr[high-1]);
+	srand(time(NULL));
+	int random = low+(rand()%(high-low));
+	my_swap(&arr[random],&arr[high-1]);
 
 	int ii = low-1;
 	int pivot = high-1;
