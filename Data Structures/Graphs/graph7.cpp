@@ -41,7 +41,7 @@ void Graph::topologicalSortingUtil(int s,bool visited[],stack<int> &Stack)
 	for(auto x:adj[s])
 	if(!visited[x])
 	topologicalSortingUtil(x,visited,Stack);
-
+	
 	Stack.push(s);
 }
 
@@ -58,7 +58,7 @@ void Graph::topologicalSort()
 		if(!visited[i])
 		topologicalSortingUtil(i,visited,Stack);	
 	}	
-	while(!Stack.empty())
+ 	while(!Stack.empty())
 	{
 		cout<<Stack.top()<<" ";
 		Stack.pop();
