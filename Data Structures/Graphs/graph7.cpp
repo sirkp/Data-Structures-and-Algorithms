@@ -14,6 +14,7 @@ public:
 		this->V = V;
 		adj = new list<int>[V];
 	}
+	~Graph(){delete []adj;}
 	void addEdgeDirected(int u, int v)
 	{
 		adj[u].push_back(v);
@@ -63,6 +64,7 @@ void Graph::topologicalSort()
 		cout<<Stack.top()<<" ";
 		Stack.pop();
 	}
+	delete []visited;
 }
 
 int main()
@@ -72,9 +74,9 @@ int main()
 		freopen("output.txt","w",stdout);
 	#endif	
 	Graph g(6); 
-    g.addEdgeDirected(5, 2); 
-    g.addEdgeDirected(5, 0); 
-    g.addEdgeDirected(4, 0); 
+    g.addEdgeDirected(0, 2); 
+    g.addEdgeDirected(0, 5); 
+    g.addEdgeDirected(4, 5); 
     g.addEdgeDirected(4, 1); 
     g.addEdgeDirected(2, 3); 
     g.addEdgeDirected(3, 1);

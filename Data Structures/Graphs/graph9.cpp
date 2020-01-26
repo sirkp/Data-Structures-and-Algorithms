@@ -27,6 +27,7 @@ public:
 		this->V = V;
 		adj = new list<AdjListNode>[V];
 	}
+	~Graph(){delete []adj;}
 	void addEdgeDirectedWeighted(int u,int v,int weight);
 	void longestPath(int s);
 };
@@ -81,6 +82,8 @@ void Graph::longestPath(int s)
 	for(int i=0;i<V;i++)
 	(dist[i]==NINF)?cout<<"NINF ":cout<<dist[i]<<" ";
 	cout<<endl;
+
+	delete []visited;
 }
 
 int main()

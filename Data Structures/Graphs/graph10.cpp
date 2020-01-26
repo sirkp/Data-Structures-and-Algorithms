@@ -12,6 +12,7 @@ public:
 		this->V = V;
 		adj = new list<int>[V];
 	}
+	~Graph(){delete []adj;}
 	void addEdgeUndirected(int u,int v)
 	{
 		adj[u].push_back(v);
@@ -62,7 +63,7 @@ bool Graph::isBipartite()
 
 				for(auto x:adj[s])
 				{
-					if(x == s)
+					if(x == s)//self loop
 					{
 						print_array(color,V);
 						return false;	
@@ -83,6 +84,7 @@ bool Graph::isBipartite()
 		}
 	}	
 	print_array(color,V);
+	delete []color;
 	return true;
 }
 
@@ -97,7 +99,6 @@ int main()
 	g.addEdgeUndirected(1,2);
 	g.addEdgeUndirected(2,3);
 	g.addEdgeUndirected(3,4);
-	g.addEdgeUndirected(4,0);
 	g.print();
 	if(g.isBipartite())
 	cout<<"Bipartite hai be\n";

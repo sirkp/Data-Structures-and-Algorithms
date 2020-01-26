@@ -22,7 +22,7 @@ class Graph
 {
 private:
 	int V,E;
-	vector<Edge> *edge;
+	vector<Edge> edge;
 	bool isCyclicUtil(int s, bool visited[], bool recStack[]);
 public:
 	
@@ -30,9 +30,7 @@ public:
 	{
 		this->V = V;
 		this->E = E;
-		edge = new vector<Edge>;
 	}
-
 	void addEdgeUndirected(int u, int v);
 	void print();
 	int find(int parent[],int v);
@@ -43,13 +41,13 @@ public:
 void Graph::addEdgeUndirected(int u,int v)
 {
 	Edge temp(u,v);
-	edge->push_back(temp);
+	edge.push_back(temp);
 }
 
 void Graph::print()
 {
 	for(int i=0;i<E;i++)
-	cout<<edge->at(i).getSrc()<<"->"<<edge->at(i).getDest()<<"  ";
+	cout<<edge.at(i).getSrc()<<"->"<<edge.at(i).getDest()<<"  ";
 	cout<<endl;	
 }
 
@@ -75,19 +73,27 @@ bool Graph::isCyclic()//O(ElogV)
 
 	for(int i=0;i<E;i++)
 	{
-		int x = find(parent,edge->at(i).getSrc());
-		int y = find(parent,edge->at(i).getDest());
+		int x = find(parent,edge.at(i).getSrc());
+		int y = find(parent,edge.at(i).getDest());
 
 		if(x==y)
-		return true;
+		{
+			delete []parent;
+			return true;
+		}
 		
 		Union(parent,x,y);	
 	}
+	delete []parent;
 	return false;
 }
 
 int main()
 {
+	#ifndef ONLINE_JUDGE
+		freopen("input.txt","r",stdin);
+		freopen("output.txt","w",stdout);
+	#endif	
 	Graph g(5,5);
 	g.addEdgeUndirected(0,1);
 	g.addEdgeUndirected(0,2);

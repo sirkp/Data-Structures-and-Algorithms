@@ -14,6 +14,7 @@ public:
 		this->V = V;
 		adj = new list<int>[V];
 	}
+	~Graph(){delete []adj;}
 
 	void addEdgeDirected(int u, int v);
 	void addEdgeUndirected(int u, int v);
@@ -68,8 +69,12 @@ bool Graph::isCyclic()// O(V+E)
 	
 	for(int i=0;i<V;i++)
 	if(isCyclicUtil(i,visited,-1))
-	return true;
+	{
+		delete []visited;
+		return true;
+	}
 
+	delete []visited;
 	return false;	
  }
 

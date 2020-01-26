@@ -14,6 +14,7 @@ public:
 		this->V = V;
 		adj = new list<int>[V];
 	}
+	~Graph(){delete []adj;}
 	void addEdgeDirected(int u,int v);
 	void addEdgeUndirected(int u,int v);
 	void BFS(int s);
@@ -71,6 +72,7 @@ void Graph::BFS(int s)//O(V+E)
 		}
 	}
 	cout<<endl;
+	delete []visited;
 }
 
 void Graph::BFSAll()// Modified BFS to print all vertices
@@ -103,6 +105,7 @@ void Graph::BFSAll()// Modified BFS to print all vertices
 		}
 	}
 	cout<<endl;
+	delete []visited;
 }
 
 int main()

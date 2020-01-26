@@ -36,6 +36,7 @@ public:
 		this->V = V;
 		adj = new list<AdjListNode>[V];
 	}
+	~Graph(){delete []adj;}
 	void addEdgeDirected(int u,int v,int weight)
 	{
 		AdjListNode edge(v,weight);
@@ -88,6 +89,7 @@ void Graph::shortestPath(int s)
 	for(int i=0;i<V;i++)
 	(dist[i]==INF)?cout<<"INF ":cout<<dist[i]<<" ";
 	cout<<endl;
+	delete []visited;
 }
 void Graph::longestPath(int s)
 {
@@ -122,6 +124,7 @@ void Graph::longestPath(int s)
 	for(int i=0;i<V;i++)
 	(dist[i]==NINF)?cout<<"NINF ":cout<<dist[i]<<" ";
 	cout<<endl;
+	delete []visited;
 }
 
 int main()
@@ -131,18 +134,26 @@ int main()
 		freopen("output.txt","w",stdout);
 	#endif	
 	Graph g(6); 
-    g.addEdgeDirected(0, 1, 5); 
-    g.addEdgeDirected(0, 2, 3); 
-    g.addEdgeDirected(1, 3, 6); 
-    g.addEdgeDirected(1, 2, 2); 
-    g.addEdgeDirected(2, 4, 4); 
-    g.addEdgeDirected(2, 5, 2); 
-    g.addEdgeDirected(2, 3, 7);
-    g.addEdgeDirected(3, 5, 1); 
-    g.addEdgeDirected(3, 4, -1); 
-    g.addEdgeDirected(4, 5, -2); 
+
+	g.addEdgeDirected(0, 2, 2); 
+    g.addEdgeDirected(0, 5, 1); 
+    g.addEdgeDirected(5, 4, 2); 
+    g.addEdgeDirected(4, 1, 1); 
+    g.addEdgeDirected(2, 3, 4); 
+    g.addEdgeDirected(1, 3, 5);	
+
+    // g.addEdgeDirected(0, 1, 5); 
+    // g.addEdgeDirected(0, 2, 3); 
+    // g.addEdgeDirected(1, 3, 6); 
+    // g.addEdgeDirected(1, 2, 2); 
+    // g.addEdgeDirected(2, 4, 4); 
+    // g.addEdgeDirected(2, 5, 2); 
+    // g.addEdgeDirected(2, 3, 7);
+    // g.addEdgeDirected(3, 5, 1); 
+    // g.addEdgeDirected(3, 4, -1); 
+    // g.addEdgeDirected(4, 5, -2); 
   
-    int s = 1;
+    int s = 0;
     g.shortestPath(s); 
     g.longestPath(s);
 }

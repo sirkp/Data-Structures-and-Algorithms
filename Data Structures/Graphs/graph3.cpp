@@ -14,7 +14,7 @@ public:
 		this->V = V;
 		adj = new list<int>[V];
 	}
-
+	~Graph(){delete []adj;}
 	void addEdgeDirected(int u, int v);
 	void addEdgeUndirected(int u, int v);
 	void print();
@@ -65,6 +65,7 @@ void Graph::DFSAll()
 		DFSUtil(i,visited);	
 	}
 	cout<<endl;
+	delete []visited;
 }
 
 void Graph::DFS(int s)// O(V+E)
@@ -75,6 +76,7 @@ void Graph::DFS(int s)// O(V+E)
 
 	DFSUtil(s,visited);
 	cout<<endl;
+	delete []visited;
 }
 
 int main()
