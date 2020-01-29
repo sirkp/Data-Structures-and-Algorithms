@@ -33,7 +33,7 @@ public:
 	}
 
 	void topologicalSort();
-	void topologicalSortingUtil(int s, bool visited[],stack<int> &stack);
+	void topologicalSortingUtil(int s, bool visited[],stack<int> &Stack);
 };
 
 void Graph::topologicalSortingUtil(int s,bool visited[],stack<int> &Stack)

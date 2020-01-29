@@ -1,3 +1,4 @@
+// https://www.geeksforgeeks.org/minimize-cash-flow-among-given-set-friends-borrowed-money/
 #include <bits/stdc++.h>
 using namespace std;
 
