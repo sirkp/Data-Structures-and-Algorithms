@@ -46,18 +46,16 @@ void Graph::print()
 
 bool Graph::isCyclicUtil(int s,bool visited[],int parent)
 {
-	if(!visited[s])
-	{
-		visited[s] = true;
-		for(auto x: adj[s])
-		if(!visited[x])
-		{
-			if(isCyclicUtil(x,visited,s))
-			return true;	
-		}	
-		else if (parent!=x)
-			return true;
-	}
+	visited[s] = true;
+	for(auto x: adj[s])
+	if(!visited[x])//For every visited vertex ‘v’, if there is an adjacent ‘u’ such that
+	{				// u is already visited and u is not parent of v, then there is a cycle in graph
+		if(isCyclicUtil(x,visited,s))
+		return true;	
+	}	
+	else if (parent!=x)
+		return true;
+
 	return false;
 }
 
@@ -68,6 +66,7 @@ bool Graph::isCyclic()// O(V+E)
 	visited[i] = false;
 	
 	for(int i=0;i<V;i++)
+	if(!visited[i])	
 	if(isCyclicUtil(i,visited,-1))
 	{
 		delete []visited;

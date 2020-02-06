@@ -33,9 +33,9 @@ public:
 	}
 	void addEdgeUndirected(int u, int v);
 	void print();
-	int find(int parent[],int v);
+	int find(int relation[],int v);
 	bool isCyclic();
-	void Union(int parent[],int src,int dest);
+	void Union(int relation[],int src,int dest);
 };
 
 void Graph::addEdgeUndirected(int u,int v)
@@ -51,40 +51,40 @@ void Graph::print()
 	cout<<endl;	
 }
 
-int Graph::find(int parent[],int v)
+int Graph::find(int relation[],int v)
 {
-	if(parent[v]==-1)
+	if(relation[v]==-1)
 	return v;
-	return find(parent,parent[v]);	
+	return find(relation,relation[v]);	
 }
 
-void Graph::Union(int parent[], int src,int dest)
+void Graph::Union(int relation[], int src,int dest)
 {
-	int xset = find(parent,src);// these
-	int yset = find(parent,dest);// these
+	int xset = find(relation,src);// these
+	int yset = find(relation,dest);// these
 	if(xset!=yset)// these are not required as function is called from isCyclic(), but we have these as fn may be called from other fn
-	parent[xset] = yset;	
+	relation[xset] = yset;	
 }
 
 bool Graph::isCyclic()//O(ElogV)
 {
-	int *parent = new int[V];
-	memset(parent, -1, sizeof(int)*V);
+	int *relation = new int[V];
+	memset(relation, -1, sizeof(int)*V);
 
 	for(int i=0;i<E;i++)
 	{
-		int x = find(parent,edge.at(i).getSrc());
-		int y = find(parent,edge.at(i).getDest());
+		int x = find(relation,edge[i].getSrc());
+		int y = find(relation,edge[i].getDest());
 
 		if(x==y)
 		{
-			delete []parent;
+			delete []relation;
 			return true;
 		}
 		
-		Union(parent,x,y);	
+		Union(relation,x,y);	
 	}
-	delete []parent;
+	delete []relation;
 	return false;
 }
 

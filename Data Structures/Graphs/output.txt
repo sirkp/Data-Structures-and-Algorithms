@@ -1,8 +1,8 @@
-doesn't contains cycle
-
-Directed edges added
-0 2
-0 3
-5 4
-
-doesn't contains cycle
+0-->1->
+1-->0->2->
+2-->1->3->
+3-->2->4->
+4-->3->
+array looklike
+1 0 1 0 1 
+Bipartite hai be

@@ -47,18 +47,16 @@ void Graph::print()
 
 bool Graph::isCyclicUtil(int s,bool visited[],bool recStack[])
 {
-	if(!visited[s])
-	{
-		visited[s] = true;
-		recStack[s] = true;
+	
+	visited[s] = true;
+	recStack[s] = true;
 
-		for(auto x:adj[s])
-		{
-			if(!visited[x] && isCyclicUtil(x,visited,recStack))
-			return true;
-			else if(recStack[x])
-			return true;	
-		}
+	for(auto x:adj[s])
+	{
+		if(!visited[x] && isCyclicUtil(x,visited,recStack))
+		return true;
+		else if(recStack[x])
+		return true;	
 	}
 	recStack[s] = false;
 	return false;
@@ -75,12 +73,15 @@ bool Graph::isCyclic()// O(V+E)
 	}
 
 	for(int i=0;i<V;i++)
-	if(isCyclicUtil(i,visited,recStack))
 	{
-		delete []visited;
-		delete []recStack;
-		return true;
-	}	
+		if(!visited[i])
+		if(isCyclicUtil(i,visited,recStack))
+		{
+			delete []visited;
+			delete []recStack;
+			return true;
+		}		
+	}
 	
 	delete []visited;
 	delete []recStack;
